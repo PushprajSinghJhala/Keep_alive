@@ -1,36 +1,24 @@
-import requests
 import time
-import logging
+import requests
+from datetime import datetime, timezone
 
-URLS = [
+urls = [
     "https://anti-india-detection.onrender.com",
     "https://mca-econsult-prototype.onrender.com"
 ]
 
-TIMEOUT = 10
-USER_AGENT = "Mozilla/5.0 (compatible; KeepAliveBot/1.0; +https://github.com/PushprajSinghJhala/Keep_alive)"
+print("🚀 Ping script started...")
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger("ping_once")
+# 1 minute ke andar 6 baar (every 10 sec) ping karega
+for i in range(6):
+    now = datetime.now(timezone.utc).isoformat()
+    print(f"\n⏰ Tick: {now}")
 
-session = requests.Session()
-session.headers.update({"User-Agent": USER_AGENT})
+    for url in urls:
+        try:
+            r = requests.get(url, timeout=10)
+            print(f"[{url}] status={r.status_code} time={r.elapsed.total_seconds():.2f}s")
+        except Exception as e:
+            print(f"[{url}] error={e}")
 
-def ping(url):
-    try:
-        start = time.time()
-        r = session.get(url, timeout=TIMEOUT)
-        elapsed = time.time() - start
-        logger.info(f"[{url}] status={r.status_code} time={elapsed:.2f}s")
-        return True
-    except Exception as e:
-        logger.error(f"[{url}] error: {e}")
-        return False
-
-def main():
-    for u in URLS:
-        ping(u)
-        time.sleep(1)
-
-if __name__ == "__main__":
-    main()
+    time.sleep(10)  # 10 second ka wait

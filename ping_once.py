@@ -9,7 +9,7 @@ urls = [
 
 print("🚀 Ping script started...")
 
-# 1 minute ke andar 6 baar (every 10 sec) ping karega
+# Har run me 1 minute ke liye chalega (10 sec interval, total 6 pings)
 for i in range(6):
     now = datetime.now(timezone.utc).isoformat()
     print(f"\n⏰ Tick: {now}")
@@ -21,4 +21,4 @@ for i in range(6):
         except Exception as e:
             print(f"[{url}] error={e}")
 
-    time.sleep(10)  # 10 second ka wait
+    time.sleep(10)  # 10 seconds wait

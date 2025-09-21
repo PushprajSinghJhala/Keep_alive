@@ -15,10 +15,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'   # stable version use karo
+          python-version: '3.11'   # stable version
 
       - name: Install dependencies
         run: pip install requests
 
       - name: Run ping script
-        run: python ping.py
+        run: python ping_once.py   # yahan naam change

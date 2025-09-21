@@ -2,17 +2,17 @@ name: KeepAlive Ping
 
 on:
   schedule:
-    - cron: '*/5 * * * *'   # har 5 minute me run hoga (UTC time)
-  workflow_dispatch:         # manually run karne ka option bhi milega
+    - cron: "* * * * *"   # har 1 minute trigger hoga
+  workflow_dispatch:      # manually run karne ka option
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
@@ -21,4 +21,4 @@ jobs:
         run: pip install requests
 
       - name: Run ping script
-        run: python ping_once.py
+        run: python ping.py

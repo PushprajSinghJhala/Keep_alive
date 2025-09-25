@@ -7,12 +7,12 @@ urls = [
     "https://mca-econsult-prototype.onrender.com"
 ]
 
-print("🚀 Ping script started...")
+print("Ping script started...")
 
-# Har run me 1 minute ke liye chalega (10 sec interval, total 6 pings)
+# Har run me 1 minute ke liye chalega total 6 pings
 for i in range(6):
     now = datetime.now(timezone.utc).isoformat()
-    print(f"\n⏰ Tick: {now}")
+    print(f"\n Tick: {now}")
 
     for url in urls:
         try:

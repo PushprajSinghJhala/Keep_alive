@@ -9,16 +9,20 @@ urls = [
 
 print("Ping script started...")
 
-# Har run me 1 minute ke liye chalega total 6 pings
-for i in range(6):
-    now = datetime.now(timezone.utc).isoformat()
-    print(f"\n Tick: {now}")
+# 6 pings, ~10s apart -> ~1 minute total (no extra sleep after last)
+with requests.Session() as sess:
+    for i in range(6):
+        now = datetime.now(timezone.utc).isoformat()
+        print(f"\nTick: {now}  (iteration {i+1}/6)")
 
-    for url in urls:
-        try:
-            r = requests.get(url, timeout=10)
-            print(f"[{url}] status={r.status_code} time={r.elapsed.total_seconds():.2f}s")
-        except Exception as e:
-            print(f"[{url}] error={e}")
+        for url in urls:
+            try:
+                # Use GET; change to HEAD if server supports it and you want lighter checks
+                r = sess.get(url, timeout=10)
+                print(f"[{url}] status={r.status_code} reason={r.reason} time={r.elapsed.total_seconds():.2f}s")
+            except requests.exceptions.RequestException as e:
+                print(f"[{url}] request error: {e!s}")
 
-    time.sleep(10)  # 10 seconds wait
+        # don't sleep after the last iteration
+        if i < 5:
+            time.sleep(10)

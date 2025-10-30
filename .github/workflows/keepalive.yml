@@ -15,10 +15,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'   # stable version
+          python-version: '3.11'   # stable versionn
 
       - name: Install dependencies
         run: pip install requests
 
       - name: Run ping script
-        run: python ping_once.py   # yahan naam change
+        run: python ping_once.py   # yahann naam change

@@ -9,7 +9,7 @@ urls = [
 
 print("Ping script started...")
 
-# 6 pings, ~10s apart -> ~1 minute total (no extra sleep after last)
+# 6 pings, ~10s apart -> ~1 minute total 
 with requests.Session() as sess:
     for i in range(6):
         now = datetime.now(timezone.utc).isoformat()

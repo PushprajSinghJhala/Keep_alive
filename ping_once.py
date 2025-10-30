@@ -1,4 +1,4 @@
-'''import time
+import time
 import requests
 from datetime import datetime, timezone
 
@@ -21,4 +21,4 @@ for i in range(6):
         except Exception as e:
             print(f"[{url}] error={e}")
 
-    time.sleep(10)  # 10 seconds wait'''
+    time.sleep(10)  # 10 seconds wait
